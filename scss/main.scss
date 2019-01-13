@@ -1,0 +1,242 @@
+@import 'mixins';
+@import 'vars';
+
+@include main;
+
+main, section, footer{
+    padding: 2rem;
+}
+h2{
+    text-transform: uppercase;
+    font-weight: bold;
+    color: $headings;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+.btn{
+    border: 1px solid $textColorMain;
+    border-radius: 2rem;
+    padding: 1rem;
+    margin: 1rem 1.5rem;
+    @include hover{
+        background-color: $hoverColor;
+    };
+    text-decoration: none;
+}
+header{
+    .menuBtn{
+        background-color: $red;
+        height: 3rem;
+        img{
+            height: 100%;
+        }
+    }
+    nav{
+        background-color: $headFoot;
+        ul{
+            text-align: center;
+            li{
+                display: block;
+                padding: 1rem;
+                a{
+                    text-decoration: none;
+                    color: $white;
+                    text-transform: capitalize;
+                }
+            }
+        }
+    }
+}
+main{
+    background-color: darken($color: $headFoot, $amount: 10);
+    text-align: center;
+    .heading *{
+        color: $white;
+        font-weight: 400;
+    }
+    h1{
+        font-weight: bold!important;
+    }
+}
+.sortBtns{
+    @include flexCenter{
+        justify-content: flex-end;
+    }
+    .btn{
+        font-size: .8rem;
+    }
+}
+.category{
+    background-color: $bkg;
+    @include flexCenter{
+        flex-direction: column;
+    }
+    .item{
+        margin: 1rem;
+        @include flexCenter{
+            flex-direction: column;
+        }
+        img{
+            width: 10rem;
+            border-radius: 50%;
+        }
+        .hide{
+            text-align: center;
+            h2{margin: 1rem;}
+            p{color: $red;}
+        }
+    }
+}
+.pricing{
+    table{display: none;}
+    @include flexCenter{
+        flex-direction: column;
+    }
+}
+.contact{
+    background-color: $bkg;
+    @include flexCenter{
+        flex-direction: column;
+    }
+    form{
+        background-color: $red;
+        padding: 1rem;
+        width: 100%;
+        margin-top: 1rem;
+        @include flexCenter{
+            flex-direction: column;
+        }
+        select, input, textarea{
+            width: 100%;
+            padding: .5rem;
+            margin-bottom: 1rem;
+        }
+        textarea{
+            margin-bottom: 0;
+        }
+        
+    }
+}
+footer{
+    background-color: $headFoot;
+    text-align: center;
+    color: $white;
+    span{
+        color: $red;
+    }
+}
+@include tablet{
+    section{
+        padding: 2rem 4rem;
+    }
+    header{
+        @include clearfix;
+        height: 5rem;
+        .menuBtn{
+            float: right;
+            height: 100%;
+            padding: .2rem 1.1rem;
+        }
+        nav{
+            height: 100%;
+            
+            padding-top: 1.5rem;
+            ul{
+                @include flexCenter{
+                    flex-direction: row;
+                    justify-content: flex-end;
+                }
+                li{
+                    padding: 1rem 3rem;
+                }
+            }
+        }
+    }
+    main{
+        background-color: none;
+        background-image: url('../slike/intro.jpg');
+        @include bkgSize;
+        height: 90vh;
+        padding: 0;
+        position: relative;
+        .heading{
+            position: absolute;
+            bottom: 0;
+            padding: 1rem;
+            width: 100%;
+            background-color: rgba($color: $headFoot, $alpha: 0.5);
+        }
+    }
+    .category{
+        flex-direction: column;
+        flex-wrap: wrap;
+        .item{
+            flex-direction: row;
+            &:nth-child(2){
+                flex-direction: row-reverse;
+            }
+            .hide{
+                visibility: hidden;
+                margin: 0 2rem;
+            }
+            img{
+                &:hover+.hide{
+                        visibility: visible;
+                }
+            }
+        }
+    }
+    .pricing{
+        a{display: none;}
+        table{
+            display: block;
+            margin: 1rem 0 3rem;
+            border-collapse: collapse;
+            th{
+                background-color: $red;
+                padding: .5rem 3rem;
+                color: $white;
+            }
+            .blue{
+                background-color: $headFoot;
+                color: $white;
+                padding: .5rem 3rem;
+            }
+            td{
+                border: 1px solid $textColorMain;
+                text-align: center;
+            }
+            .none{border: none;}
+        }
+    }
+    form{
+        flex-direction: row!important;
+        flex-wrap: wrap;
+        justify-content: space-between!important;
+        select{
+            width: 20%!important;
+        }
+        input[name="name"]{
+            width: 75%;
+        }
+    }
+}
+@include desktop{
+    section{
+        padding: 2rem 6rem;
+    }
+    .contact{
+        @include flexCenter{
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        h2{
+            width: 100%;
+        }
+        form{
+            width: 57%;
+        }
+    }
+}
